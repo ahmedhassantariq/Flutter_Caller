@@ -58,6 +58,7 @@ class _VideoCallReceiveState extends State<VideoCallReceive> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          title: Text(widget.receiver.email.toString()),
           backgroundColor: Colors.lightGreen,
           leading: IconButton(onPressed: (){Navigator.pop(context);signaling.hangUp(_localRenderer);}, icon: const Icon(Icons.arrow_back, color: Colors.white,)),
           actions: [

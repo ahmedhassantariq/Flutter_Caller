@@ -78,7 +78,7 @@ class _VideoCallSendState extends State<VideoCallSend> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(roomId.toString()),
+          title: Text(widget.receiver.email.toString()),
           backgroundColor: Colors.lightGreen,
           leading: IconButton(onPressed: (){Navigator.pop(context);signaling.hangUp(_localRenderer);}, icon: const Icon(Icons.arrow_back, color: Colors.white,)),
           actions: [
