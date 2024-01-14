@@ -24,11 +24,7 @@ class _CallPickUpPageState extends State<CallPickUpPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(widget.sender.userName, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-          CircleAvatar(
-              backgroundImage: NetworkImage(widget.sender.imageUrl),
-            minRadius: 100,
-          ),
+          Text(widget.sender.email, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
           IconButton(onPressed: (){}, icon: const Icon(Icons.call, color: Colors.green,size: 20,)),
           IconButton(onPressed: (){}, icon: const Icon(Icons.call, color: Colors.red,size: 20,)),
         ],

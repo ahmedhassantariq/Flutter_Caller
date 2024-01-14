@@ -74,10 +74,7 @@ class _CreateNewChatState extends State<CreateNewChat> {
                         return const LinearProgressIndicator();
                       }
                       return ListTile(
-                        leading: CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: NetworkImage(snapshot.data!.imageUrl)),
-                        title: Text(snapshot.data!.userName, style: const TextStyle(fontWeight: FontWeight.w600)),
+                        title: Text(snapshot.data!.email, style: const TextStyle(fontWeight: FontWeight.w600)),
                         trailing: IconButton(
                             onPressed: (){
                               setState(() {
@@ -120,14 +117,13 @@ class _CreateNewChatState extends State<CreateNewChat> {
 
     UserCredentialsModel model = UserCredentialsModel.fromMap(document as DocumentSnapshot<Map<String, dynamic>>);
     return ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.transparent,
-            backgroundImage: NetworkImage("${document['photoUrl']}")),
-        title: Text(document['userName']),
+
+        title: Text(document['email']),
         onTap: () {
           if(userList.any((element) => element == document['uid']) || document['uid'] == _firebaseAuth.currentUser!.uid){
           } else {
             setState(() {
+              print("user");
               userList.add(document['uid']);
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context) => ChatRoom(receiver: model,)));

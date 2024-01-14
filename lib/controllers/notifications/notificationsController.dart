@@ -66,9 +66,7 @@ class NotificationController {
                       return const Text("Error Loading Message");
                     }
                     return Column(children: [
-                      Text(snapshot.data!.userName, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                      const SizedBox(height: 8.0),
-                      CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.imageUrl), minRadius: 48,),
+                      Text(snapshot.data!.email, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 8.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

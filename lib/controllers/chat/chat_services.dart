@@ -113,7 +113,7 @@ class ChatServices extends ChangeNotifier{
   Stream<QuerySnapshot> searchUserName(String userName) {
     return _firestore
         .collection('users')
-        .where('userName', isLessThanOrEqualTo: userName)
+        .where('email', isLessThanOrEqualTo: userName)
         .snapshots();
   }
 

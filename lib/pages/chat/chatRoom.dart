@@ -65,11 +65,8 @@ class _ChatRoomState extends State<ChatRoom> {
         leading: IconButton(icon:const Icon(Icons.arrow_back, color: Colors.black,), onPressed: () {Navigator.pop(context);},),
         title: Row(
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                    backgroundImage: NetworkImage(widget.receiver.imageUrl)),
                 const SizedBox(width: 8.0),
-                Text(widget.receiver.userName,style: const TextStyle(color: Colors.black)),
+                Text(widget.receiver.email,style: const TextStyle(color: Colors.black)),
               ],
             ),
         actions: [
