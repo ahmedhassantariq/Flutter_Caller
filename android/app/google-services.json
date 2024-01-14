@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "765260589155",
+    "project_id": "called-778ca",
+    "storage_bucket": "called-778ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765260589155:android:c905c0b3d0a574331f7056",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb62uYCckzzciN26ePjmN8lqwjmkLlySA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765260589155:android:95d7c57f9d7458ed1f7056",
+        "android_client_info": {
+          "package_name": "com.example.caller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb62uYCckzzciN26ePjmN8lqwjmkLlySA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
