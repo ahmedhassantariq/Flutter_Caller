@@ -24,6 +24,11 @@ class _VideoCallSendState extends State<VideoCallSend> {
   RTCVideoRenderer _localRenderer = RTCVideoRenderer();
   final RTCVideoRenderer _remoteRenderer = RTCVideoRenderer();
   String? roomId;
+  bool frontCamera = false;
+  bool isMic = true;
+  bool isVideo = true;
+  bool isLocalScreen = true;
+
 
   sendMessage(String roomID) {
     if(roomId!=null) {
@@ -73,14 +78,25 @@ class _VideoCallSendState extends State<VideoCallSend> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: IconButton(onPressed: (){Navigator.pop(context);signaling.hangUp(_localRenderer);}, icon: const Icon(Icons.arrow_back, color: Colors.black,)),
+          title: Text(roomId.toString()),
+          backgroundColor: Colors.lightGreen,
+          leading: IconButton(onPressed: (){Navigator.pop(context);signaling.hangUp(_localRenderer);}, icon: const Icon(Icons.arrow_back, color: Colors.white,)),
           actions: [
-            defaultTargetPlatform == TargetPlatform.android
+            (defaultTargetPlatform == TargetPlatform.android)
                 ?
-            IconButton(onPressed: (){signaling?.switchCamera();}, icon: const Icon(Icons.switch_camera, color: Colors.black,))
+            IconButton(onPressed: (){signaling?.switchCamera(); setState(() {
+              frontCamera = !frontCamera;
+            });}, icon: const Icon(Icons.switch_camera, color: Colors.white,))
                 :
-            const SizedBox()
+            const SizedBox(),
+            IconButton(onPressed: (){isMic = !isMic; setState(() {
+              signaling?.muteMic(isMic);
+            });}, icon: isMic ? const Icon(Icons.mic, color: Colors.white,): const Icon(Icons.mic_off, color: Colors.red,)),
+            IconButton(onPressed: (){isVideo = !isVideo; setState(() {
+              signaling?.muteVideo(isVideo);
+            });}, icon: isVideo ? const Icon(Icons.videocam_outlined, color: Colors.white,): const Icon(Icons.videocam_off_outlined, color: Colors.red,)),
+            IconButton(onPressed: (){isLocalScreen = !isLocalScreen; setState(() {});}, icon: isLocalScreen ? const Icon(Icons.video_camera_front_outlined, color: Colors.white,): const Icon(Icons.videocam_off_outlined, color: Colors.red,)),
+
           ],
         ),
         bottomNavigationBar: BottomAppBar(
@@ -91,27 +107,26 @@ class _VideoCallSendState extends State<VideoCallSend> {
                 Navigator.pop(context);
               }, child: const Text("Hang Up", style: TextStyle(color: Colors.white),)),
         ),
-        body: Column(
-          children: <Widget>[
-            SizedBox(height: 8),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        child: RTCVideoView(
-                          _localRenderer,
-                          mirror:
-                          true,
-                        )),
-                    Expanded(
-                        child: RTCVideoView(_remoteRenderer)),
-                  ],
-                ),
+        body: Stack(
+          children:<Widget> [
+            Container(
+              child: RTCVideoView(
+                _remoteRenderer,
+                objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
               ),
             ),
+            isLocalScreen ? Positioned(
+              bottom: 0,
+              right: 0,
+              child: SizedBox(
+                  height: 200,
+                  width: 150,
+                  child: isVideo ?  RTCVideoView(
+                    _localRenderer,
+                    mirror: defaultTargetPlatform == TargetPlatform.android ? !frontCamera : true,
+                    objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+                  ) : const Icon(Icons.videocam_off, color: Colors.white,)),
+            ) : const SizedBox(),
           ],
         ),
       ),

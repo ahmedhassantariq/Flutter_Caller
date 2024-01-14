@@ -232,10 +232,16 @@ class WebRtcManager {
     }
   }
 
-  void muteMic() {
+  void muteMic(bool isMic) {
     if (localStream != null) {
       bool enabled = localStream!.getAudioTracks()[0].enabled;
-      localStream!.getAudioTracks()[0].enabled = !enabled;
+      localStream!.getAudioTracks()[0].enabled = isMic;
+    }
+  }
+  void muteVideo(bool isVideo) {
+    if (localStream != null) {
+      bool enabled = localStream!.getAudioTracks()[0].enabled;
+      localStream!.getVideoTracks()[0].enabled = isVideo;
     }
   }
 
