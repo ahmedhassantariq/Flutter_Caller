@@ -7,6 +7,12 @@ class FirebaseServices extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  Future<String> getTokenFromUser(String userUID) async {
+    DocumentSnapshot<Map<String, dynamic>> userCredentials = await _firestore
+        .collection('users').doc(userUID).get();
+    return userCredentials.get('fcmToken');
+  }
+
   Future<ControlsModel> getControls() async {
     DocumentSnapshot<Map<String, dynamic>> doc = await  _firestore.collection('settings').doc("controls").get();
     return ControlsModel.fromMap(doc);

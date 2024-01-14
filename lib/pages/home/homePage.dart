@@ -1,8 +1,7 @@
 import 'package:caller/firebase/userDataModel.dart';
+import 'package:caller/pages/chat/chatPage.dart';
 import 'package:caller/pages/home/redirectScreen.dart';
-import 'package:caller/pages/videoCall/joinPage.dart';
-import 'package:caller/pages/videoCall/videoCallReceive.dart';
-import 'package:caller/pages/videoCall/videoCallSend.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +9,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../authentication/auth/auth_service.dart';
-import '../../controllers/notification_services.dart';
-import '../videoCall/createPage.dart';
+import '../../controllers/notifications/notification_services.dart';
+import '../chat/createNewChat.dart';
+
 
 
 
@@ -83,19 +83,12 @@ class _HomePageState extends State<HomePage> {
           title: const Text("Line-Share", style: TextStyle(color: Colors.white),),
           backgroundColor: Colors.lightGreen,
           actions: [
+            IconButton(padding: const EdgeInsets.symmetric(horizontal: 18.0),onPressed: (){showNewChatMenu();}, icon: const Icon(Icons.chat)),
             IconButton(onPressed: (){_authService.signOut();}, icon: const Icon(Icons.logout, color: Colors.white,))
           ],),
-        body: Center(
+        body: const Center(
           child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CupertinoButton(minSize: 50,onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>JoinPage(controls: widget.controls,)));},color: Colors.green,borderRadius: BorderRadius.circular(25),pressedOpacity: 0.7, child: Text("Join")),
-                  const SizedBox(height: 8.0),
-                  CupertinoButton(minSize: 50,onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>CreatePage(controls:  widget.controls,)));},color: Colors.green,borderRadius: BorderRadius.circular(25),pressedOpacity: 0.7, child: Text("Create")),
-                ],
-              )),
+              child: ChatPage()),
         ),
       bottomNavigationBar: isLoaded ? SizedBox(
         height: bannerAd.size.height.toDouble(),
@@ -103,5 +96,19 @@ class _HomePageState extends State<HomePage> {
         child: AdWidget(ad: bannerAd,),
       ): SizedBox(),
     );
+  }
+
+
+  showNewChatMenu() {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        enableDrag: false,
+        context: context,
+        builder: (BuildContext context) {
+          return const SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: ScrollPhysics(),
+              child: CreateNewChat());
+        });
   }
 }
