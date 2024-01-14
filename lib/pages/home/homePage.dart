@@ -86,15 +86,13 @@ class _HomePageState extends State<HomePage> {
             IconButton(padding: const EdgeInsets.symmetric(horizontal: 18.0),onPressed: (){showNewChatMenu();}, icon: const Icon(Icons.chat)),
             IconButton(onPressed: (){_authService.signOut();}, icon: const Icon(Icons.logout, color: Colors.white,))
           ],),
-        body: const Center(
-          child: SingleChildScrollView(
-              child: ChatPage()),
-        ),
+        body: const SingleChildScrollView(
+            child: ChatPage()),
       bottomNavigationBar: isLoaded ? SizedBox(
         height: bannerAd.size.height.toDouble(),
         width: bannerAd.size.width.toDouble(),
         child: AdWidget(ad: bannerAd,),
-      ): SizedBox(),
+      ): const SizedBox(),
     );
   }
 
