@@ -16,10 +16,7 @@ import '../chat/createNewChat.dart';
 
 
 class HomePage extends StatefulWidget {
-  final ControlsModel controls;
-
   const HomePage({
-    required this.controls,
     super.key});
 
   @override
@@ -52,9 +49,9 @@ class _HomePageState extends State<HomePage> {
     bannerAd.load();
   }
   checkRedirect(){
-    if(widget.controls.isRedirect){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> RedirectScreen(controls: widget.controls,)));
-    }
+    // if(widget.controls.isRedirect){
+    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> RedirectScreen(controls: widget.controls,)));
+    // }
   }
 
 
@@ -71,9 +68,9 @@ class _HomePageState extends State<HomePage> {
       checkRedirect();
     });
     if(defaultTargetPlatform == TargetPlatform.android) {
-      if(widget.controls.showHomePageAd) {
-        initBannerAd();
-      }
+      // if(widget.controls.showHomePageAd) {
+      //   initBannerAd();
+      // }
     }
   }
   @override

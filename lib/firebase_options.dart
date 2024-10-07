@@ -50,19 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCxCu95uYj0eMTC8QuzpiKRKjmx6SELPJY',
-    appId: '1:765260589155:web:a17f7961a6fca4cc1f7056',
-    messagingSenderId: '765260589155',
-    projectId: 'called-778ca',
-    authDomain: 'called-778ca.firebaseapp.com',
-    storageBucket: 'called-778ca.appspot.com',
+    apiKey: 'AIzaSyBwrDRYzfYQAum0HhFAbzwZ5osCLOYiUOQ',
+    appId: '1:1044837162769:web:52b85625c43e250b41f6b0',
+    messagingSenderId: '1044837162769',
+    projectId: 'medical-67f6f',
+    authDomain: 'medical-67f6f.firebaseapp.com',
+    storageBucket: 'medical-67f6f.appspot.com',
+    measurementId: 'G-0LB7FYEQ61',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAb62uYCckzzciN26ePjmN8lqwjmkLlySA',
-    appId: '1:765260589155:android:95d7c57f9d7458ed1f7056',
-    messagingSenderId: '765260589155',
-    projectId: 'called-778ca',
-    storageBucket: 'called-778ca.appspot.com',
+    apiKey: 'AIzaSyAMxcDuhO_BVvXWRFZkEysp0Hs8SGFcoj4',
+    appId: '1:1044837162769:android:27e645bfde840bff41f6b0',
+    messagingSenderId: '1044837162769',
+    projectId: 'medical-67f6f',
+    storageBucket: 'medical-67f6f.appspot.com',
   );
+
 }

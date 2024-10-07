@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'login_or_resgister.dart';
 
 class AuthGate extends StatelessWidget {
-  final ControlsModel controls;
   const AuthGate({
-    required this.controls,
     super.key});
 
   @override
@@ -17,7 +15,7 @@ class AuthGate extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if(snapshot.hasData){
-            return HomePage(controls: controls);
+            return HomePage();
           } else {
             return const LoginOrRegister();
           }
